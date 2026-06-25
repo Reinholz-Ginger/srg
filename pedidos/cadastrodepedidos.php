@@ -30,10 +30,10 @@
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
     <!-- Extras -->
-    <link rel="stylesheet" href="../onLoad/onLoad.css?v=1.7.1">
+    <link rel="stylesheet" href="../onLoad/onLoad.css?v=1.7.2">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="../onLoad/onLoad.js?v=1.7.1"></script>
+    <script src="../onLoad/onLoad.js?v=1.7.2"></script>
 </head>
 
 <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white font-sans h-[100vh]" onload="onLoad()">
@@ -100,12 +100,12 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="../generalScripts/toastify.js?v=1.7.1"></script>
-    <script src="../generalScripts/darkmode.js?v=1.7.1"></script>
-    <script src="../mobileMenu/js/mobileMenu.js?v=1.7.1"></script>
-    <script src="../generalScripts/version.js?v=1.7.1"></script>
-    <script src="../generalScripts/backPage.js?v=1.7.1"></script>
-    <script src="listar.js?v=1.7.1"></script>
-    <script src="../pedidos/busca.js?v=1.7.1"></script>
+    <script src="../generalScripts/toastify.js?v=1.7.2"></script>
+    <script src="../generalScripts/darkmode.js?v=1.7.2"></script>
+    <script src="../mobileMenu/js/mobileMenu.js?v=1.7.2"></script>
+    <script src="../generalScripts/version.js?v=1.7.2"></script>
+    <script src="../generalScripts/backPage.js?v=1.7.2"></script>
+    <script src="listar.js?v=1.7.2"></script>
+    <script src="../pedidos/busca.js?v=1.7.2"></script>
 </body>
 </html>

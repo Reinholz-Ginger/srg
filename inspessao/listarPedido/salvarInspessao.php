@@ -46,17 +46,17 @@ $printUrl = '../listarPedido/print/printInspessao.php?id=' . urlencode($id)
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="nofollow,noindex">
-    <link rel="stylesheet" href="../../index/root.css?v=1.7.1">
-    <link rel="stylesheet" href="../../onLoad/onLoad.css?v=1.7.1">
-    <link rel="stylesheet" href="../../mobileMenu/css/mobileMenu.css?v=1.7.1">
-    <link rel="stylesheet" href="salvarInspessao.css?v=1.7.1">
+    <link rel="stylesheet" href="../../index/root.css?v=1.7.2">
+    <link rel="stylesheet" href="../../onLoad/onLoad.css?v=1.7.2">
+    <link rel="stylesheet" href="../../mobileMenu/css/mobileMenu.css?v=1.7.2">
+    <link rel="stylesheet" href="salvarInspessao.css?v=1.7.2">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { darkMode: 'class' };
     </script>
     <link rel="shortcut icon" href="../../assets/favicon.svg" type="image/x-icon">
     <title>Inspeção</title>
-    <script src="../../onLoad/onLoad.js?v=1.7.1"></script>
+    <script src="../../onLoad/onLoad.js?v=1.7.2"></script>
 </head>
 
 <body id="body" class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans" onload="onLoad()">
@@ -286,12 +286,12 @@ $printUrl = '../listarPedido/print/printInspessao.php?id=' . urlencode($id)
         <p id="data-footer"></p>
     </footer>
 
-    <script src="../../mobileMenu/js/mobileMenu.js?v=1.7.1"></script>
-    <script src="../../generalScripts/version.js?v=1.7.1"></script>
-    <script src="../../generalScripts/backPage.js?v=1.7.1"></script>
-    <script src="upload.js?v=1.7.1"></script>
-    <script src="apagarImg.js?v=1.7.1"></script>
-    <script src="abrirImgHD.js?v=1.7.1"></script>
+    <script src="../../mobileMenu/js/mobileMenu.js?v=1.7.2"></script>
+    <script src="../../generalScripts/version.js?v=1.7.2"></script>
+    <script src="../../generalScripts/backPage.js?v=1.7.2"></script>
+    <script src="upload.js?v=1.7.2"></script>
+    <script src="apagarImg.js?v=1.7.2"></script>
+    <script src="abrirImgHD.js?v=1.7.2"></script>
     <script>
         function reload() {
             window.location.reload();

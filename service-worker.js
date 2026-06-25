@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pwa-cache-v1.7.1';
+const CACHE_NAME = 'pwa-cache-v1.7.2';
 const STATIC_ASSETS = [
     '/manifest.json'
 ];

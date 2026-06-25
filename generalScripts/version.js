@@ -1,6 +1,6 @@
 //alterar a versão do sistema
 
-const versao = '1.7.1';
+const versao = '1.7.2';
 const element = document.getElementById('data-footer');
 const data = () => {
     if (!element) return;

@@ -71,11 +71,11 @@ if (!isset($_SESSION['id'])) {
   </footer>
 
   <!-- Scripts -->
-  <script src="../../generalScripts/version.js?v=1.7.1"></script>
-  <script src="../../generalScripts/backPage.js?v=1.7.1"></script>
-  <script src="cadastro.js?v=1.7.1"></script>
-  <script src="listar.js?v=1.7.1"></script>
-  <script src="busca.js?v=1.7.1"></script>
+  <script src="../../generalScripts/version.js?v=1.7.2"></script>
+  <script src="../../generalScripts/backPage.js?v=1.7.2"></script>
+  <script src="cadastro.js?v=1.7.2"></script>
+  <script src="listar.js?v=1.7.2"></script>
+  <script src="busca.js?v=1.7.2"></script>
   <script>
     function onLoad() {
       document.getElementById('preload').style.display = 'none';

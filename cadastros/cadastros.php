@@ -15,8 +15,8 @@ include '../protect.php';
     tailwind.config = { darkMode: 'class' };
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="../generalScripts/darkmode.js?v=1.7.1"></script>
-  <script src="../onLoad/onLoad.js?v=1.7.1"></script>
+  <script src="../generalScripts/darkmode.js?v=1.7.2"></script>
+  <script src="../onLoad/onLoad.js?v=1.7.2"></script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans min-h-screen flex flex-col" onload="onLoad()">
 
@@ -77,8 +77,8 @@ include '../protect.php';
   </footer>
 
   <!-- Scripts -->
-  <script src="../generalScripts/toastify.js?v=1.7.1"></script>
-  <script src="../mobileMenu/js/mobileMenu.js?v=1.7.1"></script>
-  <script src="../generalScripts/version.js?v=1.7.1"></script>
+  <script src="../generalScripts/toastify.js?v=1.7.2"></script>
+  <script src="../mobileMenu/js/mobileMenu.js?v=1.7.2"></script>
+  <script src="../generalScripts/version.js?v=1.7.2"></script>
 </body>
 </html>
