@@ -97,13 +97,13 @@ include '../../protect.php';
   </footer>
 
   <!-- Scripts -->
-  <script src="../../onLoad/onLoad.js"></script>
-  <script src="../../mobileMenu/js/mobileMenu.js"></script>
-  <script src="../../generalScripts/version.js"></script>
-  <script src="../../generalScripts/backPage.js"></script>
-  <script src="cadastroFonecedor.js"></script>
-  <script src="listarFornecedores.js"></script>
-  <script src="busca.js"></script>
+  <script src="../../onLoad/onLoad.js?v=1.7.0"></script>
+  <script src="../../mobileMenu/js/mobileMenu.js?v=1.7.0"></script>
+  <script src="../../generalScripts/version.js?v=1.7.0"></script>
+  <script src="../../generalScripts/backPage.js?v=1.7.0"></script>
+  <script src="cadastroFonecedor.js?v=1.7.0"></script>
+  <script src="listarFornecedores.js?v=1.7.0"></script>
+  <script src="busca.js?v=1.7.0"></script>
 </body>
 
 </html>

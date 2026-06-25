@@ -5,8 +5,8 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="apagar.css">
-    <link rel="stylesheet" href="../../index/root.css">
+   <link rel="stylesheet" href="apagar.css?v=1.7.0">
+    <link rel="stylesheet" href="../../index/root.css?v=1.7.0">
    <title>Registro atualizado</title>
 </head>
 <body>

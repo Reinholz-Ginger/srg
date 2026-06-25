@@ -60,7 +60,7 @@ if (isset($_GET['id'])) {
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="../../onLoad/onLoad.js"></script>  
+    <script src="../../onLoad/onLoad.js?v=1.7.0"></script>  
 </head>
 
 <body id="body" onload="onLoad()" class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
@@ -289,28 +289,28 @@ if ($result && $result->num_rows != 0) {
   </div>
 
   <!-- Scripts -->
-       <script src="../../generalScripts/toastify.js"></script>
+       <script src="../../generalScripts/toastify.js?v=1.7.0"></script>
 
-    <script src="../../generalScripts/darkmode.js"></script>
+    <script src="../../generalScripts/darkmode.js?v=1.7.0"></script>
  
-  <script src="../../generalScripts/backPage.js"></script>
-  <script src="../../generalScripts/version.js"></script>
+  <script src="../../generalScripts/backPage.js?v=1.7.0"></script>
+  <script src="../../generalScripts/version.js?v=1.7.0"></script>
 
-  <script src="../pedidos/buscaCliente.js"></script>
-  <script src="../pedidos/pedidos.js"></script>
+  <script src="../pedidos/buscaCliente.js?v=1.7.0"></script>
+  <script src="../pedidos/pedidos.js?v=1.7.0"></script>
 
-  <script src="../pedidos/buscaFornecedor.js"></script>
-  <script src="../pedidos/buscaProduto.js"></script>
+  <script src="../pedidos/buscaFornecedor.js?v=1.7.0"></script>
+  <script src="../pedidos/buscaProduto.js?v=1.7.0"></script>
 
 
-  <script src="../pedidos/aumentarQuantidade.js"></script>
+  <script src="../pedidos/aumentarQuantidade.js?v=1.7.0"></script>
 
-  <script src="../pedidos/mostrarInfo.js"></script>
-  <script src="listarProdutos.js"></script>
-  <script src="salvarEdicao.js"></script>
-  <script src="../../generalScripts/deleteDiv.js"></script>
-  <script src="validarBotaoSalvar.js"></script>
+  <script src="../pedidos/mostrarInfo.js?v=1.7.0"></script>
+  <script src="listarProdutos.js?v=1.7.0"></script>
+  <script src="salvarEdicao.js?v=1.7.0"></script>
+  <script src="../../generalScripts/deleteDiv.js?v=1.7.0"></script>
+  <script src="validarBotaoSalvar.js?v=1.7.0"></script>
   
-  <script src="avisoSalvar.js"></script>
+  <script src="avisoSalvar.js?v=1.7.0"></script>
 </body>
 </html>

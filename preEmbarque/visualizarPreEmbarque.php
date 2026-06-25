@@ -177,5 +177,5 @@ foreach ($camposPreEmbarque as $index => $campoReferencia) {
         </a>
     </footer>
 </body>
-<script src="../generalScripts/version.js"></script>
+<script src="../generalScripts/version.js?v=1.7.0"></script>
 </html>

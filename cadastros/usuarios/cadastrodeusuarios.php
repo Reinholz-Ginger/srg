@@ -22,7 +22,7 @@ if (!isset($_SESSION['id'])) {
   <script>
     tailwind.config = { darkMode: 'class' };
   </script>
-  <script src="../../onLoad/onLoad.js"></script>
+  <script src="../../onLoad/onLoad.js?v=1.7.0"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 </head>
@@ -86,14 +86,14 @@ if (!isset($_SESSION['id'])) {
     <p id="data-footer"></p>
   </footer>
 
-  <script src="../../generalScripts/toastify.js"></script>
-  <script src="../../generalScripts/darkmode.js"></script>
-  <script src="../../mobileMenu/js/mobileMenu.js"></script>
-  <script src="../../generalScripts/version.js"></script>
-  <script src="../../generalScripts/backPage.js"></script>
-  <script src="cadastro.js"></script>
-  <script src="listar.js"></script>
-  <script src="busca.js"></script>
+  <script src="../../generalScripts/toastify.js?v=1.7.0"></script>
+  <script src="../../generalScripts/darkmode.js?v=1.7.0"></script>
+  <script src="../../mobileMenu/js/mobileMenu.js?v=1.7.0"></script>
+  <script src="../../generalScripts/version.js?v=1.7.0"></script>
+  <script src="../../generalScripts/backPage.js?v=1.7.0"></script>
+  <script src="cadastro.js?v=1.7.0"></script>
+  <script src="listar.js?v=1.7.0"></script>
+  <script src="busca.js?v=1.7.0"></script>
 </body>
 
 </html>
