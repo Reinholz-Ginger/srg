@@ -11,7 +11,7 @@ if (getenv('APP_BASE_PATH') === false) {
         foreach (file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $linha) {
             $linha = trim($linha);
 
-            if ($linha === '' || str_starts_with($linha, '#') || !str_contains($linha, '=')) {
+            if ($linha === '' || strpos($linha, '#') === 0 || strpos($linha, '=') === false) {
                 continue;
             }
 

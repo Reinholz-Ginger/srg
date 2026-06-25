@@ -158,20 +158,29 @@ $printUrl = '../listarPedido/print/printInspessao.php?id=' . urlencode($id)
     <main class="inspectionMain">
         <form class="inputSearchHeaderInspecao" id="form-pesquisa2" action="">
             <input id="chaveAcesso" type="hidden" value="<?= htmlspecialchars($id, ENT_QUOTES, 'UTF-8') ?>">
-            <select name="fornecedor" id="fornecedor" aria-label="Fornecedor">
+            <div class="produtorSearch" id="produtorSearch">
+                <input type="hidden" name="fornecedor" id="fornecedor">
+                <input type="text" id="fornecedorBusca" class="produtorSearchInput" placeholder="Buscar por numero ou produtor" autocomplete="off" aria-label="Buscar produtor">
+                <div class="produtorSearchList" id="fornecedorLista" role="listbox">
                 <?php
-                $stmtFornecedores = $conn->prepare("SELECT nome FROM fornecedores ORDER BY nome ASC");
+                $stmtFornecedores = $conn->prepare("SELECT numero, nome FROM fornecedores ORDER BY numero ASC, nome ASC");
                 $stmtFornecedores->execute();
                 $resultFornecedores = $stmtFornecedores->get_result();
 
                 if ($resultFornecedores && $resultFornecedores->num_rows != 0) {
                     while ($rowFornecedor = mysqli_fetch_assoc($resultFornecedores)) {
-                        $fornecedorOption = $rowFornecedor['nome'];
-                        echo '<option value="' . htmlspecialchars($fornecedorOption, ENT_QUOTES, 'UTF-8') . '">' . htmlspecialchars(strtoupper($fornecedorOption), ENT_QUOTES, 'UTF-8') . '</option>';
+                        $fornecedorOption = (string) ($rowFornecedor['nome'] ?? '');
+                        $fornecedorNumero = (string) ($rowFornecedor['numero'] ?? '');
+                        echo '<button type="button" class="produtorSearchOption" role="option" data-nome="' . htmlspecialchars($fornecedorOption, ENT_QUOTES, 'UTF-8') . '" data-search="' . htmlspecialchars($fornecedorNumero . ' ' . $fornecedorOption, ENT_QUOTES, 'UTF-8') . '">';
+                        echo '<span class="produtorSearchNumero">' . htmlspecialchars($fornecedorNumero, ENT_QUOTES, 'UTF-8') . '</span>';
+                        echo '<span class="produtorSearchNome">' . htmlspecialchars(strtoupper($fornecedorOption), ENT_QUOTES, 'UTF-8') . '</span>';
+                        echo '</button>';
                     }
                 }
                 ?>
-            </select>
+                    <div class="produtorSearchEmpty" id="fornecedorVazio" hidden>Nenhum produtor encontrado</div>
+                </div>
+            </div>
             <button type="button" class="buttonAdicionarProdutor" onclick="adicionarProdutor()">Adicionar Produtor</button>
         </form>
 
@@ -293,10 +302,97 @@ $printUrl = '../listarPedido/print/printInspessao.php?id=' . urlencode($id)
             console.log(id);
         }
 
+        const produtorSearch = document.getElementById('produtorSearch');
+        const fornecedorInput = document.getElementById('fornecedor');
+        const fornecedorBusca = document.getElementById('fornecedorBusca');
+        const fornecedorLista = document.getElementById('fornecedorLista');
+        const fornecedorVazio = document.getElementById('fornecedorVazio');
+        const fornecedorOptions = Array.from(document.querySelectorAll('.produtorSearchOption'));
+
+        function normalizarTexto(valor) {
+            return String(valor || '')
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .toLowerCase()
+                .trim();
+        }
+
+        function abrirListaProdutores() {
+            produtorSearch.classList.add('is-open');
+        }
+
+        function fecharListaProdutores() {
+            produtorSearch.classList.remove('is-open');
+        }
+
+        function selecionarProdutor(option) {
+            fornecedorInput.value = option.dataset.nome;
+            fornecedorBusca.value = option.innerText.replace(/\s+/g, ' ').trim();
+            fecharListaProdutores();
+        }
+
+        function filtrarProdutores() {
+            const termo = normalizarTexto(fornecedorBusca.value);
+            let totalVisivel = 0;
+
+            fornecedorInput.value = '';
+
+            fornecedorOptions.forEach((option) => {
+                const textoBusca = normalizarTexto(option.dataset.search);
+                const visivel = textoBusca.includes(termo);
+                option.hidden = !visivel;
+
+                if (visivel) {
+                    totalVisivel++;
+                }
+            });
+
+            fornecedorVazio.hidden = totalVisivel !== 0;
+            abrirListaProdutores();
+        }
+
+        fornecedorOptions.forEach((option) => {
+            option.addEventListener('click', () => selecionarProdutor(option));
+        });
+
+        fornecedorBusca.addEventListener('focus', () => {
+            filtrarProdutores();
+        });
+
+        fornecedorBusca.addEventListener('input', filtrarProdutores);
+
+        fornecedorBusca.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                fecharListaProdutores();
+                fornecedorBusca.blur();
+                return;
+            }
+
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const primeiraOpcao = fornecedorOptions.find((option) => !option.hidden);
+
+                if (primeiraOpcao) {
+                    selecionarProdutor(primeiraOpcao);
+                }
+            }
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!produtorSearch.contains(event.target)) {
+                fecharListaProdutores();
+            }
+        });
+
         let adicionarProdutor = () => {
             let chaveAcesso = document.getElementById('chaveAcesso').value;
             let fornecedor = document.getElementById('fornecedor').value;
             let formData = new FormData();
+
+            if (!fornecedor) {
+                appAlert('Selecione um produtor da lista antes de adicionar.', { title: 'Produtor da inspeção' });
+                return;
+            }
 
             formData.append('chaveAcesso', chaveAcesso);
             formData.append('fornecedor', fornecedor);
@@ -305,13 +401,17 @@ $printUrl = '../listarPedido/print/printInspessao.php?id=' . urlencode($id)
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(async data => {
-                await appAlert(data, { title: 'Produtor da inspeção' });
-                window.location.reload();
+                await appAlert(data.mensagem || 'Produtor processado.', { title: 'Produtor da inspeção' });
+
+                if (data.status === 'sucesso') {
+                    window.location.reload();
+                }
             })
             .catch(error => {
                 console.error('Erro:', error);
+                appAlert('Não foi possível adicionar o produtor. Verifique o console do sistema.', { title: 'Produtor da inspeção' });
             });
         };
 

@@ -116,7 +116,12 @@ a {
     background: #1f2937;
 }
 
-.inputSearchHeaderInspecao select {
+.produtorSearch {
+    position: relative;
+    min-width: 0;
+}
+
+.produtorSearchInput {
     width: 100%;
     height: 42px;
     padding: 0 12px;
@@ -127,10 +132,103 @@ a {
     font-size: 0.92rem;
 }
 
-.dark .inputSearchHeaderInspecao select {
+.dark .produtorSearchInput {
     border-color: #4b5563;
     background: #111827;
     color: #f9fafb;
+}
+
+.produtorSearchInput:focus {
+    border-color: #16a34a;
+    outline: 2px solid rgba(22, 163, 74, 0.16);
+}
+
+.produtorSearchList {
+    width: 100%;
+    max-height: 280px;
+    overflow-y: auto;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 30;
+    display: none;
+    padding: 6px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.16);
+}
+
+.produtorSearch.is-open .produtorSearchList {
+    display: grid;
+    gap: 4px;
+}
+
+.dark .produtorSearchList {
+    border-color: #4b5563;
+    background: #111827;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.36);
+}
+
+.produtorSearchOption {
+    width: 100%;
+    min-height: 42px;
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: #111827;
+    display: grid;
+    grid-template-columns: minmax(46px, auto) minmax(0, 1fr);
+    gap: 10px;
+    align-items: center;
+    text-align: left;
+}
+
+.produtorSearchOption:hover,
+.produtorSearchOption:focus {
+    background: #f0fdf4;
+    outline: none;
+}
+
+.dark .produtorSearchOption {
+    color: #f9fafb;
+}
+
+.dark .produtorSearchOption:hover,
+.dark .produtorSearchOption:focus {
+    background: rgba(22, 101, 52, 0.32);
+}
+
+.produtorSearchNumero {
+    color: #16a34a;
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.produtorSearchNome {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.produtorSearchEmpty {
+    padding: 12px;
+    color: #6b7280;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.dark .produtorSearchEmpty {
+    color: #9ca3af;
+}
+
+.produtorSearchEmpty[hidden],
+.produtorSearchOption[hidden] {
+    display: none;
 }
 
 .buttonAdicionarProdutor {

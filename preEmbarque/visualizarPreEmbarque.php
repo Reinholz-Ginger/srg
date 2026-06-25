@@ -140,7 +140,7 @@ foreach ($camposPreEmbarque as $index => $campoReferencia) {
             $caminho = ltrim($caminho, '/');
             $caminhoSeguro = './listarPreembarque/' . $caminho;
 
-            if (str_contains($caminho, '..')) {
+            if (strpos($caminho, '..') !== false) {
                 $caminhoSeguro = '';
             }
 

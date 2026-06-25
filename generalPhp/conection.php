@@ -12,7 +12,7 @@ if (!function_exists('carregarEnv')) {
         foreach ($linhas as $linha) {
             $linha = trim($linha);
 
-            if ($linha === '' || str_starts_with($linha, '#') || !str_contains($linha, '=')) {
+            if ($linha === '' || strpos($linha, '#') === 0 || strpos($linha, '=') === false) {
                 continue;
             }
 
@@ -21,8 +21,8 @@ if (!function_exists('carregarEnv')) {
             $valor = trim($valor);
 
             if (
-                (str_starts_with($valor, '"') && str_ends_with($valor, '"')) ||
-                (str_starts_with($valor, "'") && str_ends_with($valor, "'"))
+                (substr($valor, 0, 1) === '"' && substr($valor, -1) === '"') ||
+                (substr($valor, 0, 1) === "'" && substr($valor, -1) === "'")
             ) {
                 $valor = substr($valor, 1, -1);
             }
@@ -46,7 +46,14 @@ $port = (int) (getenv('DB_PORT') ?: 3306);
 $conn = new mysqli($serverName, $username, $password, $dbname, $port);
 
 if ($conn->connect_error) {
-    error_log('Erro de conexão com o banco: ' . $conn->connect_error);
+    error_log(sprintf(
+        'Erro de conexão com o banco: %s | host=%s port=%s db=%s user=%s',
+        $conn->connect_error,
+        $serverName,
+        $port,
+        $dbname,
+        $username
+    ));
     http_response_code(500);
     die('Não foi possível conectar ao banco de dados.');
 }

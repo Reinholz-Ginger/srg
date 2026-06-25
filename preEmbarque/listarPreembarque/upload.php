@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // SALVAR CAMPOS DE TEXTO
     foreach ($_POST as $campo => $valor) {
         if ($campo === 'uniqId') continue;
-        if (str_ends_with($campo, '_nome')) continue;
+        if (substr($campo, -5) === '_nome') continue;
         if (!isset($_FILES[$campo])) {
             $nomeCampo = $_POST[$campo . '_nome'] ?? $campo;
             if (empty($nomeCampo)) continue;
