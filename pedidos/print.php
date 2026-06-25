@@ -1,5 +1,6 @@
 <?php
 include '../generalPhp/conection.php';
+include '../protect.php';
 
 
 // Check if 'id' parameter is provided in the URL

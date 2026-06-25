@@ -54,8 +54,8 @@ async function salvarPreEmbarque() {//salva o pre embarque na página inicial do
   }
 }
 
-function deletar(id) {
-  if (confirm("Tem certeza que deseja deletar pre embarque?")) {
+async function deletar(id) {
+  if (await appConfirm("Tem certeza que deseja deletar este pré-embarque?", { title: 'Deletar pré-embarque' })) {
     $.ajax({
       url: "./php/deletarPreEmbarque.php", // O arquivo PHP que processará a exclusão
       type: "POST",

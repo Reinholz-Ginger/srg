@@ -37,9 +37,9 @@ function listar(pagina, qnt_result_pg) {
             type: 'POST',
             url: 'salvarPackingList.php',
             data: formData,
-            success: function(response) {
+            success: async function(response) {
                 // Manipula a resposta do servidor
-                alert('Packing List salvo com sucesso!');
+                await appAlert('Packing List salvo com sucesso!', { title: 'Packing List' });
                 console.log(response);
                 window.location.reload();
             },
@@ -51,20 +51,20 @@ function listar(pagina, qnt_result_pg) {
     }
 
 
-    function deletarPackingList(id) {
-        if (confirm('Tem certeza que deseja deletar este Packing  List?')) {
+    async function deletarPackingList(id) {
+        if (await appConfirm('Tem certeza que deseja deletar este Packing List?', { title: 'Deletar Packing List' })) {
             $.ajax({
                 url: 'deletarPackingList.php', // O arquivo PHP que processará a exclusão
                 type: 'POST',
                 data: { id: id },
-                success: function(response) {
-                    alert(response); // Mensagem do servidor (sucesso ou erro)
+                success: async function(response) {
+                    await appAlert(response, { title: 'Packing List' }); // Mensagem do servidor (sucesso ou erro)
                     // Remover a inspeção deletada da interface, se necessário
                   window.location.reload()// Supondo que cada inspeção tenha um ID HTML correspondente
                 },
-                error: function(xhr, status, error) {
+                error: async function(xhr, status, error) {
                     console.error('Erro ao deletar a Packing List:', error);
-                    alert('Houve um erro ao tentar deletar a Packing List.');
+                    await appAlert('Houve um erro ao tentar deletar a Packing List.', { title: 'Erro' });
                 }
             });
         }
@@ -109,15 +109,15 @@ function salvarEdicaoPackingList() {
                 numero_container: numeroContainer,
                 data_PackingList: dataPackingList
             },
-            success: function(response) {
-                alert(response); // Mensagem do servidor (sucesso ou erro)
+            success: async function(response) {
+                await appAlert(response, { title: 'Packing List' }); // Mensagem do servidor (sucesso ou erro)
               
                 $('#divEditarPackingList').hide(); // Esconder o formulário de edição
                 window.location.reload();
             },
-            error: function(xhr, status, error) {
+            error: async function(xhr, status, error) {
                 console.error('Erro ao editar a Packing  List:', error);
-                alert('Houve um erro ao tentar editar a PackingList.');
+                await appAlert('Houve um erro ao tentar editar a PackingList.', { title: 'Erro' });
             }
         });
     }

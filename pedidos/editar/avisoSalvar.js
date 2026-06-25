@@ -1,7 +1,7 @@
 
 // função aparece um aviso se apertar o botão antes de salvar 
-let avisoSalvar = () => {
-    if (confirm("Dados não salvos serão perdidos")) {
+let avisoSalvar = async () => {
+    if (await appConfirm("Dados não salvos serão perdidos. Deseja sair?", { title: 'Sair sem salvar' })) {
       window.location.href = '../cadastrodepedidos.php';
     }
     
@@ -9,5 +9,4 @@ let avisoSalvar = () => {
   
 
   let avisoSalvar2 = () => {
-  //  alert("Dados não salvos serão perdidos")
   }

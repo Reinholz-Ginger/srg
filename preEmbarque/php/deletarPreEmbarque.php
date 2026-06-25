@@ -1,6 +1,7 @@
 <?php
 // Incluir a conexão com banco de dados
 include '../../generalPhp/conection.php';
+include '../../protect.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verifica se o ID foi enviado

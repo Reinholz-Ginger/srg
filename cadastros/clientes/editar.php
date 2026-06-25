@@ -1,5 +1,6 @@
 <?php
 include '../../generalPhp/conection.php';
+include '../../protect.php';
 
 
 

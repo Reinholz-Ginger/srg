@@ -1,188 +1,342 @@
-
-body{
-    height: auto;
-    width: 100vw;
-    background-color: var(--branco);
-}
-
-
-header{
+body {
+    min-height: 100vh;
     width: 100%;
-    height: 136px;
-    background-color: var(--cor03);
-    position: relative;
-    text-align: center;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.174);
 }
 
-
-/*cabeçalho nome do cliente*/
-.cabecalhoNome{
-    width: 100%;
-    height: 40px;
-    background-color: var(--branco);
-    position: absolute;
-    bottom: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.cabecalhoNome h3{
-    margin-left: 10px;
-}
-
-
-
-/* form com as imagens dos clientes*/
-.formImgens{
-    width: 100%;
-    height: 160px;
-    background-color: var(--cor03);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 2px;
-}
-/* contem os dados do fornecedor numero e nome */
-.dadosFornecedor{
-    width: 95%;
-    height: 30px;
-    background-color: var(--cor04);
-    display: flex;
-    color: var(--cor03);
-    font-weight: 700;
-    justify-content: space-around;
-    /* margin: 0px 30px 0px 30px; */
-    align-items: center;
-    position: relative;
-}
-.forncedorNum{
-    /* position: absolute; */
-    left: 8px;
-}
-/*container com os thumbnails das imagens*/
-.inputContainer{
- width: 95%;
- height: 100px;
- display: flex;
- flex-wrap: wrap;
- overflow: hidden;
-
-
-}
-
-.apagarImagem{
-    width: 25px;
-    height: 25px;
-    z-index: 2;
-    background-color: var(--cor02);
-    border-radius: 50%;
-    padding: 5px;
-    position: absolute;
-    right: 0.5px;
-    top: 3px;
-}
-
-.inputSearchHeaderInspecao{
-    width: 60%;
-    position: absolute;
-    top: 40px;
-
-    left: 50%;
-    transform: translate(-50%);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-.buttonAdicionarProdutor{
-    width: 94%;
-    margin: 4px 5px 0px 5px;
-    height: 26px;
-    background-color: var(--cor02);
-    color: white;
-    font-size: 1.2em;
+button,
+a {
     cursor: pointer;
 }
 
-.inputThumbnail{
-    width: 24%;
-    height: 100%;
-  
-    position: relative;
-    border-radius: 5px;
-    display: flex;
-   justify-content: center;
+.inspectionHeader {
+    background: #166534;
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.14);
 }
 
-.inputThumbnail input{
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-   
-}
-
-.buttonUploadImg{
-    width: 95%;
-    height: 95%;
-    background-color: var(--cor04);
-    border-radius: 10px;
-    position: absolute;
-    bottom: 2px;
-    color: black;
-    font-weight: 700;
-    display: flex;
-    justify-content: center;
+.headerInner {
+    width: min(1120px, calc(100% - 32px));
+    min-height: 76px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 16px;
     align-items: center;
+}
+
+.headerTitle {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.headerTitle img {
+    width: 34px;
+    height: 34px;
+    padding: 7px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.headerTitle p,
+.headerTitle span {
+    margin: 0;
+    font-size: 0.78rem;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.headerTitle h1 {
+    max-width: min(58vw, 620px);
+    margin: 2px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 1.08rem;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.headerActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.iconAction {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.iconAction:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+}
+
+.iconAction img {
+    width: 21px;
+    height: 21px;
+}
+
+.backButton,
+.mobileMenuButton {
+    position: static;
+}
+
+.inspectionMain {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 22px 0 34px;
+}
+
+.inputSearchHeaderInspecao {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 18px;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.dark .inputSearchHeaderInspecao {
+    border-color: #374151;
+    background: #1f2937;
+}
+
+.inputSearchHeaderInspecao select {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    color: #111827;
+    font-size: 0.92rem;
+}
+
+.dark .inputSearchHeaderInspecao select {
+    border-color: #4b5563;
+    background: #111827;
+    color: #f9fafb;
+}
+
+.buttonAdicionarProdutor {
+    min-height: 42px;
+    padding: 0 16px;
+    border: 0;
+    border-radius: 8px;
+    background: #16a34a;
+    color: #fff;
+    font-size: 0.92rem;
+    font-weight: 700;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonAdicionarProdutor:hover {
+    background: #15803d;
+}
+
+.containerList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+    gap: 14px;
+}
+
+.formImgens {
+    min-width: 0;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
     overflow: hidden;
 }
 
-.buttonUploadImg img{
-    width: 50%;
- 
+.dark .formImgens {
+    border-color: #374151;
+    background: #1f2937;
 }
 
-.thumbnailImageLoaded {
-
-    width: 24%;
-    height: 100%;
-    position: relative;
-    border-radius: 5px;
+.dadosFornecedor {
+    min-height: 58px;
+    padding: 12px 14px;
+    border-bottom: 1px solid #e5e7eb;
     display: flex;
-   justify-content: center;
-
-  
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
-.thumbnailImageLoaded img{
+.dark .dadosFornecedor {
+    border-color: #374151;
+}
+
+.forncedorNum {
+    display: block;
+    margin-bottom: 2px;
+    color: #16a34a;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.nomeFornecedor {
+    display: block;
+    color: #111827;
+    font-size: 0.98rem;
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.dark .nomeFornecedor {
+    color: #f9fafb;
+}
+
+.deleteFornecedorButton {
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    background: #fef2f2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deleteFornecedorButton img {
+    width: 18px;
+    height: 18px;
+}
+
+.inputContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 10px;
+    padding: 12px;
+}
+
+.thumbnailImageLoaded,
+.inputThumbnail {
+    min-width: 0;
+    aspect-ratio: 1 / 1;
+    position: relative;
+}
+
+.inputThumbnail input {
+    display: none;
+}
+
+.buttonUploadImg {
     width: 100%;
+    height: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #f9fafb;
+    color: #374151;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.dark .buttonUploadImg {
+    border-color: #374151;
+    background: #111827;
+    color: #d1d5db;
+}
+
+.buttonUploadImg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.uploadButton {
+    border-style: dashed;
+    background: #f0fdf4;
+    color: #166534;
+    font-weight: 700;
+}
+
+.dark .uploadButton {
+    background: rgba(22, 101, 52, 0.18);
+    color: #86efac;
+}
+
+.uploadButton img {
+    width: 28px;
+    height: 28px;
     object-fit: contain;
 }
-/*imagem em hd */
-.imagemHD{
+
+.uploadButton span {
+    font-size: 0.78rem;
+}
+
+.apagarImagem {
+    width: 30px;
+    height: 30px;
+    z-index: 2;
+    border: 1px solid #fecaca;
+    border-radius: 999px;
+    background: #ef4444;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(15, 23, 42, 0.2);
+}
+
+.apagarImagem img {
+    width: 15px;
+    height: 15px;
+}
+
+.imagemHD {
     width: 100%;
     height: 100%;
     position: fixed;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
-    z-index: 3;
-
+    transform: translate(-50%, -50%);
+    z-index: 50;
     display: none;
     justify-content: center;
     align-items: center;
-    background-color: var(--cor04);
+    background: rgba(17, 24, 39, 0.9);
 }
 
-.imagemHD img{
-    width:80%
+.imagemHD img {
+    width: min(90%, 980px);
+    max-height: 86vh;
+    object-fit: contain;
+    border-radius: 8px;
 }
 
-.closeButton{
+.closeButton {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    background-color: var(--cor02);
+    border-radius: 999px;
+    background: #ef4444;
     position: absolute;
     bottom: 40px;
     right: 40px;
@@ -191,174 +345,99 @@ header{
     align-items: center;
     font-weight: 800;
     color: white;
-    font-size: 2em;
-    
-}
-/* botão novo pedido*/
-.buttonAction{
-    width: 257px;
-    height: 42px;
-    border-radius: 20px;
-    border: none;
-    background-color: var(--cor02);
-    color: var(--branco);
-    font-size:1.5em;
-    font-weight: 600;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-button img{
-    margin-left: 8px;
+    font-size: 1.4rem;
 }
 
-/*lista do container */
-.containerList{
-    width: 100%;
-    height: calc(100vh - 165px);
-    background-color: var(--branco);
-    overflow: auto;
-}
-
-
-
-/* mensagem de erro de busca */
-
-.notFound{
-    width: 100%;
-    height: calc(100vh - 360px);
+.emptyState {
+    grid-column: 1 / -1;
+    min-height: 260px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 8px;
+    background: #fff;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-
-
-
-.notFoundImg{
-    max-width: 150px;
-    animation-duration: 0.6s;
-    animation-name: notFound;
-}
-
-.notFound h3,p{
-    font-size: 1em;
-    margin: 5px;
-}
-
-@keyframes notFound{
-    from{
-        width: 0px;
-    }
-
-    to{
-        width: 150px;
-    }
-}
-
-
-a{
-    text-decoration: none;
-    color: var(--branco);
-   
-}
-
-
-/* css do botão de botão mobile */
-.mobileMenuButton{
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
-    border: none;
-    position: absolute;
-    right: 24px;
-    top: 24px;
-}
-
-/* css do botão de voltar a página anterior */
-.backButton{
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
-    border: none;
-    position: absolute;
-    left: 24px;
-    top: 24px;
-
-}
-
-
-
-
-footer{
-    width: 100vw;
-    height: 28px;
-    background-color: var(--cor01);
-    color: var(--cor03);
-
-   
-    font-size: 10pt;
-    font-weight: 500;
-    
-  
-    display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-
-@media screen and (min-width: 768px){
-   
-    button {
-       width: 300px;
-    }
-   
-   .quantidadeContainer, .containerInternoValoresFinais{
-       width: 50%;
-   }
-       
-   .containerList{
-       width: 50%;
-       margin: auto;
-   }
-   .buttonAdicionarProdutor{
-    width: 34%;
+    gap: 8px;
     text-align: center;
-    border-radius: 10px;
-    border: solid  1px rgba(97, 11, 11, 0.654);
-    cursor: pointer;
-  
+    padding: 28px;
 }
-  
-.inputSearchHeaderInspecao{
-    width: 60%;
-    position: absolute;
-    top: 40px;
 
-    left: 50%;
-    transform: translate(-50%);
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.dark .emptyState {
+    border-color: #4b5563;
+    background: #1f2937;
 }
-   
-   .editTable{
-       justify-content: space-evenly;
-   }
 
-   form{
-    width: 60%;
-  
-   }
-   select{
-    width: 60%;
-   }
-   header{
+.emptyState img {
+    width: 44px;
+    height: 44px;
+    opacity: 0.8;
+}
+
+.emptyState h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.emptyState p {
+    max-width: 360px;
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.dark .emptyState p {
+    color: #9ca3af;
+}
+
+footer {
+    width: 100%;
+    min-height: 38px;
+    color: #6b7280;
+    font-size: 0.82rem;
     display: flex;
     justify-content: center;
     align-items: center;
-   }
- 
-   }
+}
 
+@media (max-width: 640px) {
+    .headerInner {
+        width: min(100% - 20px, 1120px);
+        grid-template-columns: 38px 1fr auto;
+        gap: 10px;
+    }
+
+    .iconAction {
+        width: 38px;
+        height: 38px;
+    }
+
+    .headerTitle h1 {
+        max-width: 44vw;
+        font-size: 0.98rem;
+    }
+
+    .headerTitle img {
+        display: none;
+    }
+
+    .inspectionMain {
+        width: min(100% - 20px, 1120px);
+        padding-top: 14px;
+    }
+
+    .inputSearchHeaderInspecao {
+        grid-template-columns: 1fr;
+    }
+
+    .buttonAdicionarProdutor {
+        width: 100%;
+    }
+
+    .inputContainer {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        padding: 10px;
+    }
+}

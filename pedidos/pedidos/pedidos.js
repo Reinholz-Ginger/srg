@@ -21,7 +21,7 @@ let ContinuarParaPedidos = () => {
     const clientePedido = primeiroOption.value
 
     if (!clientePedido || clientePedido == "Cliente não encontrado") {
-        alert("selecione um cliente")
+        appAlert("Selecione um cliente.", { title: 'Cliente obrigatório' });
     } else {
         div.style.display = 'none'
         input.value = clientePedido

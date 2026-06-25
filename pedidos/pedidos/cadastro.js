@@ -7,10 +7,10 @@
 let envioEmAndamento = false;
 // arraya ser enviado para o banco de dados com
 
-const enviarDados = () => {
+const enviarDados = async () => {
 
   if (envioEmAndamento) {
-    alert("Tentativa de salvamento duplicado ");
+    await appAlert("Tentativa de salvamento duplicado.", { title: 'Pedido em andamento' });
     window.location.href="../cadastrodepedidos.php"
     return;
 }

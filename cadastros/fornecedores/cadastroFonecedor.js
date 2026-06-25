@@ -14,7 +14,7 @@
         })
         .then(response => response.text())
         .then(data => {
-            alert(data);
+            appAlert(data, { title: 'Cadastro de fornecedor' });
             form.reset();
             carregarFornecedores(1,10)
           

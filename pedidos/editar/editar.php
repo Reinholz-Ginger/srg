@@ -294,6 +294,7 @@ if ($result && $result->num_rows != 0) {
     <script src="../../generalScripts/darkmode.js"></script>
  
   <script src="../../generalScripts/backPage.js"></script>
+  <script src="../../generalScripts/version.js"></script>
 
   <script src="../pedidos/buscaCliente.js"></script>
   <script src="../pedidos/pedidos.js"></script>

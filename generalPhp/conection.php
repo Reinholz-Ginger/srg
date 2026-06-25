@@ -1,27 +1,54 @@
 <?php
 
-// Verifica se está rodando em ambiente local
-$isLocal = in_array($_SERVER['HTTP_HOST'], ['localhost', '127.0.0.1']);
+if (!function_exists('carregarEnv')) {
+    function carregarEnv($path)
+    {
+        if (!is_file($path) || !is_readable($path)) {
+            return;
+        }
 
-// Configurações de conexão
-if ($isLocal) {
-    // Ambiente local
-    $serverName = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "reinholzGingerSystem";
-} else {
-    // Ambiente de produção (servidor)
-    $serverName = "localhost";
-    $username = "srgapp32_lucasroncheti27";
-    $password = "skinzerferida";
-    $dbname = "srgapp32_sistemacadastro";
+        $linhas = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        foreach ($linhas as $linha) {
+            $linha = trim($linha);
+
+            if ($linha === '' || str_starts_with($linha, '#') || !str_contains($linha, '=')) {
+                continue;
+            }
+
+            [$chave, $valor] = explode('=', $linha, 2);
+            $chave = trim($chave);
+            $valor = trim($valor);
+
+            if (
+                (str_starts_with($valor, '"') && str_ends_with($valor, '"')) ||
+                (str_starts_with($valor, "'") && str_ends_with($valor, "'"))
+            ) {
+                $valor = substr($valor, 1, -1);
+            }
+
+            if ($chave !== '' && getenv($chave) === false) {
+                putenv($chave . '=' . $valor);
+                $_ENV[$chave] = $valor;
+            }
+        }
+    }
 }
 
-// Cria conexão
-$conn = new mysqli($serverName, $username, $password, $dbname);
+carregarEnv(dirname(__DIR__) . '/.env');
 
-// Verifica erro
+$serverName = getenv('DB_HOST') ?: 'localhost';
+$username = getenv('DB_USER') ?: 'root';
+$password = getenv('DB_PASS') ?: 'root';
+$dbname = getenv('DB_NAME') ?: 'reinholzGingerSystem';
+$port = (int) (getenv('DB_PORT') ?: 3306);
+
+$conn = new mysqli($serverName, $username, $password, $dbname, $port);
+
 if ($conn->connect_error) {
-    die("Erro na conexão: " . $conn->connect_error);
+    error_log('Erro de conexão com o banco: ' . $conn->connect_error);
+    http_response_code(500);
+    die('Não foi possível conectar ao banco de dados.');
 }
+
+$conn->set_charset('utf8mb4');

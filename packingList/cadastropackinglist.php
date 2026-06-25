@@ -133,5 +133,6 @@ if (!isset($_SESSION['id'])) {
 
 
   <script src="../generalScripts/backPage.js"></script>
+  <script src="../generalScripts/version.js"></script>
   <script src="../pedidos/busca.js"></script>
   <script src="listar.js"></script>

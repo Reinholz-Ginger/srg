@@ -29,7 +29,7 @@ let listar = () => {
 
 
     if (!fornecedor || produto === "" || fornecedor === " Fornecedor não encontrado " || produto === "Produto não encontrado" || dataRetirada === ''||dataRetirada === undefined) {
-        alert("Preencha o campo vazio ! ")
+        appAlert("Preencha o campo vazio!", { title: 'Campos obrigatórios' });
         
     } else {
         calcularTotal()

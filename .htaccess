@@ -1,0 +1,35 @@
+Options -Indexes
+ServerSignature Off
+
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "(^|/)(\.env|composer\.(json|lock)|package(-lock)?\.json|README\.md|checkList\.md|gitattributes|htaccess)$">
+  Require all denied
+</FilesMatch>
+
+<FilesMatch "\.(sql|bak|backup|old|orig|tmp|log)$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  RewriteRule (^|/)(error_log|.*\.log)$ - [F,L,NC]
+  RewriteRule (^|/).*\.(sql|bak|backup|old|orig|tmp)$ - [F,L,NC]
+  RewriteRule (^|/)\.env.*$ - [F,L,NC]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the "ea-php82" package as the default PHP programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php82___lsphp .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

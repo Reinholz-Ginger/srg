@@ -62,7 +62,7 @@ function recuperarDados() {
   };
 }
 
-const salvarEdicao = () => {
+const salvarEdicao = async () => {
   const dadosEnvio = recuperarDados();
 
   if (dadosEnvio.campovazio) {
@@ -71,7 +71,7 @@ const salvarEdicao = () => {
   }
 
   if (envioEmAndamento) {
-    alert("Tentativa de salvamento duplicado ");
+    await appAlert("Tentativa de salvamento duplicado.", { title: 'Pedido em andamento' });
     window.location.href = "../cadastrodepedidos.php";
     return;
   }
@@ -172,8 +172,9 @@ async function alterarDataRetirada(idItem, element) {
 }
 
 async function apagarPedido(idItem) {
-  const confirmacao = confirm(
-    "Tem certeza que deseja apagar este item do pedido?"
+  const confirmacao = await appConfirm(
+    "Tem certeza que deseja apagar este item do pedido?",
+    { title: 'Apagar item' }
   );
   if (!confirmacao) return;
 

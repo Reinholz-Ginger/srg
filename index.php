@@ -101,7 +101,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
     <script>
         // Função a ser executada quando a div for criada
         function minhaFuncao() {
-            alert("A div foi criada!");
+            appAlert("A div foi criada!", { title: 'Login' });
         }
 
         // Configurar o observador de mutação

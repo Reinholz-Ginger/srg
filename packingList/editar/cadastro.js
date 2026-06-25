@@ -10,7 +10,7 @@ const enviarDados = () => {
 
 
   if (!fornecedor || !palet || !quantidade) {
-    alert("Preencha todos os campos antes de enviar os dados.");
+    appAlert("Preencha todos os campos antes de enviar os dados.", { title: 'Campos obrigatórios' });
     document.getElementById('preload').style.display = 'none';
     return;
   }

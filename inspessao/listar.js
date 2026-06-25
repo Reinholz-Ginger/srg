@@ -52,20 +52,20 @@ function listar(pagina, qnt_result_pg) {
     }
 
 
-    function deletarInspecao(id) {
-        if (confirm('Tem certeza que deseja deletar esta inspeção?')) {
+    async function deletarInspecao(id) {
+        if (await appConfirm('Tem certeza que deseja deletar esta inspeção?', { title: 'Deletar inspeção' })) {
             $.ajax({
                 url: 'deletarInspecao.php', // O arquivo PHP que processará a exclusão
                 type: 'POST',
                 data: { id: id },
-                success: function(response) {
-                    alert(response); // Mensagem do servidor (sucesso ou erro)
+                success: async function(response) {
+                    await appAlert(response, { title: 'Inspeção' }); // Mensagem do servidor (sucesso ou erro)
                     // Remover a inspeção deletada da interface, se necessário
                     listar(1,10)// Supondo que cada inspeção tenha um ID HTML correspondente
                 },
-                error: function(xhr, status, error) {
+                error: async function(xhr, status, error) {
                     console.error('Erro ao deletar a inspeção:', error);
-                    alert('Houve um erro ao tentar deletar a inspeção.');
+                    await appAlert('Houve um erro ao tentar deletar a inspeção.', { title: 'Erro' });
                 }
             });
         }
@@ -110,15 +110,15 @@ function salvarEdicaoInspecao() {
                 numero_container: numeroContainer,
                 data_inspecao: dataInspecao
             },
-            success: function(response) {
-                alert(response); // Mensagem do servidor (sucesso ou erro)
+            success: async function(response) {
+                await appAlert(response, { title: 'Inspeção' }); // Mensagem do servidor (sucesso ou erro)
               
                 $('#divEditarInspecao').hide(); // Esconder o formulário de edição
                 window.location.reload();
             },
-            error: function(xhr, status, error) {
+            error: async function(xhr, status, error) {
                 console.error('Erro ao editar a inspeção:', error);
-                alert('Houve um erro ao tentar editar a inspeção.');
+                await appAlert('Houve um erro ao tentar editar a inspeção.', { title: 'Erro' });
             }
         });
     }

@@ -1,4 +1,7 @@
-<?php include '../generalPhp/conection.php'; ?>
+<?php
+include '../generalPhp/conection.php';
+include '../protect.php';
+?>
 <!DOCTYPE html>
 <html lang="pt-br" class="dark">
 <head>

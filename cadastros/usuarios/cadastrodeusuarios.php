@@ -1,5 +1,15 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+if (!isset($_SESSION['id'])) {
+    die(header("Location: ../../index.php"));
+}
+?>
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="dark">
 
 <head>
   <meta charset="UTF-8">
@@ -8,70 +18,74 @@
   <link rel="shortcut icon" href="../../assets/favicon.svg" type="image/x-icon">
   <title>Cadastro Usuários</title>
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = {
-      darkMode: 'class'
-    }
+    tailwind.config = { darkMode: 'class' };
   </script>
   <script src="../../onLoad/onLoad.js"></script>
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Scripts e Estilos Gerais -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </head>
 
-<body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white" onload="onLoad()">
-  <!-- Preloader -->
+<body class="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100 font-sans" onload="onLoad()">
   <div id="preload" class="fixed inset-0 flex items-center justify-center bg-white dark:bg-gray-900 z-50">
     <div class="animate-spin rounded-full h-16 w-16 border-b-4 border-green-500"></div>
   </div>
 
-  <!-- Header -->
-  <header class="flex flex-col lg:flex-row justify-between items-start lg:items-center p-4 shadow-md">
-    <div class="flex items-center gap-4 w-full lg:w-auto">
-      <a href="../cadastros.php" class="text-white hover:underline flex items-center gap-2">
-        <i class="fas fa-arrow-left"></i> Voltar
+  <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between gap-4">
+      <a href="../cadastros.php" class="inline-flex items-center justify-center w-10 h-10 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700" title="Voltar">
+        <i class="fas fa-arrow-left text-green-700 dark:text-green-400"></i>
       </a>
-     
-    </div>
 
-    <form id="cadastroForm" class="flex flex-col lg:flex-row gap-4 mt-4 lg:mt-0">
-      <div class="flex flex-col">
-        <label for="nome">USUÁRIO</label>
-        <input id="nome" name="nome" placeholder="USUÁRIO" type="text" required class="input" />
+      <div class="flex-1 min-w-0">
+        <p class="text-xs uppercase font-semibold text-green-700 dark:text-green-400">Cadastros</p>
+        <h1 class="text-lg font-semibold truncate">Usuários</h1>
       </div>
-      <div class="flex flex-col">
-        <label for="senha">SENHA</label>
-        <input id="senha" name="senha" placeholder="SENHA" type="password" required class="input" />
-      </div>
-      <div class="flex flex-col">
-        <label for="senha1">REPITA A SENHA</label>
-        <input id="senha1" name="senha_confirmada" placeholder="REPITA A SENHA" type="password" required class="input" />
-      </div>
-      <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">SALVAR <i class="fas fa-save ml-2"></i></button>
-    </form>
+    </div>
   </header>
 
-  <!-- Busca -->
-  <section class="p-4">
-    <form method="POST" id="form-pesquisa" action="" class="mb-4">
-      <input type="text" name="pesquisa" id="pesquisa" placeholder="Buscar" class="w-full p-2 border border-gray-300 rounded dark:bg-gray-800" />
-    </form>
+  <main class="max-w-6xl mx-auto w-full px-4 py-6 space-y-6">
+    <section class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm p-4">
+      <form id="cadastroForm" class="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+        <div class="grid gap-1">
+          <label for="nome" class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-300">Usuário</label>
+          <input id="nome" name="nome" placeholder="Usuário" type="text" required
+            class="h-10 w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 text-sm outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/20">
+        </div>
 
-    <!-- Listagem -->
-    <section id="containerList" class="grid gap-4"></section>
-  </section>
+        <div class="grid gap-1">
+          <label for="senha" class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-300">Senha</label>
+          <input id="senha" name="senha" placeholder="Senha" type="password" required
+            class="h-10 w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 text-sm outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/20">
+        </div>
 
-  <!-- Footer -->
-  <footer class="p-4 text-center border-t border-gray-300 dark:border-gray-700">
+        <div class="grid gap-1">
+          <label for="senha1" class="text-xs font-semibold uppercase text-gray-600 dark:text-gray-300">Repita a senha</label>
+          <input id="senha1" name="senha_confirmada" placeholder="Repita a senha" type="password" required
+            class="h-10 w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 text-sm outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/20">
+        </div>
+
+        <button type="submit" class="h-10 inline-flex items-center justify-center gap-2 rounded bg-green-600 hover:bg-green-700 text-white px-4 text-sm font-semibold shadow-sm">
+          SALVAR <i class="fas fa-save"></i>
+        </button>
+      </form>
+    </section>
+
+    <section class="space-y-4">
+      <form method="POST" id="form-pesquisa" action="">
+        <input type="text" name="pesquisa" id="pesquisa" placeholder="Buscar"
+          class="h-10 w-full rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 text-sm outline-none focus:border-green-600 focus:ring-2 focus:ring-green-600/20">
+      </form>
+
+      <section id="containerList" class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm overflow-hidden"></section>
+    </section>
+  </main>
+
+  <footer class="text-center py-4 text-xs text-gray-500 dark:text-gray-400">
     <p id="data-footer"></p>
   </footer>
 
-  <!-- Scripts Gerais -->
   <script src="../../generalScripts/toastify.js"></script>
   <script src="../../generalScripts/darkmode.js"></script>
   <script src="../../mobileMenu/js/mobileMenu.js"></script>

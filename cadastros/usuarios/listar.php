@@ -54,7 +54,7 @@ if (($resultado_sql) && ($resultado_sql->num_rows != 0)) {
     $quantidade_pg = ceil($row_pg['num_result'] / $qnt_result_pg);
 
     $max_links = 2;
-    echo "<div class='mt-4 flex flex-wrap gap-2 text-sm text-gray-800 dark:text-gray-200'>";
+    echo "<div class='mt-4 justify-center flex flex-wrap gap-2 text-sm text-gray-800 dark:text-gray-200'>";
     echo "<a href='#' onclick='listar(1, $qnt_result_pg)' class='px-3 py-1 bg-gray-300 dark:bg-gray-700 rounded hover:bg-gray-400 dark:hover:bg-gray-600'>&lt; Primeira</a>";
 
     for ($pag_ant = $pagina - $max_links; $pag_ant <= $pagina - 1; $pag_ant++) {
@@ -79,4 +79,3 @@ if (($resultado_sql) && ($resultado_sql->num_rows != 0)) {
     echo '<h3 class="text-lg font-semibold">NÃO HÁ REGISTROS</h3>';
     echo '</div>';
 }
-?>

@@ -2,6 +2,15 @@
 inspessao/listarPedido/imgHigh/
 inspessao/listarPedido/thumbnails/
 
-# Ignorar arquivo de conexão PHP
-generalPhp/conection.php
-generalPhp/conection.php
+# Ignorar arquivos sensiveis locais
+.env
+.env.*
+!.env.example
+*.log
+error_log
+*.sql
+*.bak
+*.backup
+*.old
+*.orig
+*.tmp

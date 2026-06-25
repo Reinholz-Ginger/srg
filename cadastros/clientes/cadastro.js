@@ -15,7 +15,7 @@
         })
         .then(response => response.text())
         .then(data => {
-            alert(data);
+            appAlert(data, { title: 'Cadastro de cliente' });
             form.reset();
             listar(1,10)
           

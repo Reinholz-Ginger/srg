@@ -1,5 +1,6 @@
 <?php
 include '../../generalPhp/conection.php';
+include '../../protect.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
 $dados = $data['dados']; // ← Correto agora

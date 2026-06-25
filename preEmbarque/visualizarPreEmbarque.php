@@ -19,19 +19,35 @@ $camposPreEmbarque = [
 
 
 if (!isset($_GET['id'])) {
-    die("ID não informado.");
+    http_response_code(400);
+    die("Link inválido.");
 }
 
 $id = $_GET['id'];
 
+if (!preg_match('/^[A-Za-z0-9_-]{6,80}$/', $id)) {
+    http_response_code(400);
+    die("Link inválido.");
+}
+
 // Verifica se o registro existe em pre_embarque
 $stmt = $conn->prepare("SELECT name, container, data FROM pre_embarque WHERE uniqId = ?");
+if (!$stmt) {
+    error_log('Erro ao preparar consulta pública de pré-embarque: ' . $conn->error);
+    http_response_code(500);
+    die("Não foi possível carregar o pré-embarque.");
+}
 $stmt->bind_param("s", $id);
-$stmt->execute();
+if (!$stmt->execute()) {
+    error_log('Erro ao executar consulta pública de pré-embarque: ' . $stmt->error);
+    http_response_code(500);
+    die("Não foi possível carregar o pré-embarque.");
+}
 $result = $stmt->get_result();
 
 if ($result->num_rows === 0) {
-    die("Registro de pré-embarque não encontrado.");
+    http_response_code(404);
+    die("Pré-embarque não encontrado.");
 }
 
 $info = $result->fetch_assoc();
@@ -42,8 +58,17 @@ $dataEmissao = date("d/m/y", strtotime($info['data']));
 // Coleta os dados salvos em pre_embarque_files
 $dadosCampos = [];
 $stmtCampos = $conn->prepare("SELECT nomeCampo, caminho, resposta FROM pre_embarque_files WHERE uniqId = ? ORDER BY nomeCampo ASC");
+if (!$stmtCampos) {
+    error_log('Erro ao preparar consulta pública dos arquivos de pré-embarque: ' . $conn->error);
+    http_response_code(500);
+    die("Não foi possível carregar o pré-embarque.");
+}
 $stmtCampos->bind_param("s", $id);
-$stmtCampos->execute();
+if (!$stmtCampos->execute()) {
+    error_log('Erro ao executar consulta pública dos arquivos de pré-embarque: ' . $stmtCampos->error);
+    http_response_code(500);
+    die("Não foi possível carregar o pré-embarque.");
+}
 $resultCampos = $stmtCampos->get_result();
 
 while ($row = $resultCampos->fetch_assoc()) {
@@ -111,10 +136,22 @@ foreach ($camposPreEmbarque as $index => $campoReferencia) {
     if ($dado) {
         $ext = strtolower(pathinfo($dado['caminho'], PATHINFO_EXTENSION));
         if (!empty($dado['caminho'])) {
+            $caminho = str_replace('\\', '/', $dado['caminho']);
+            $caminho = ltrim($caminho, '/');
+            $caminhoSeguro = './listarPreembarque/' . $caminho;
+
+            if (str_contains($caminho, '..')) {
+                $caminhoSeguro = '';
+            }
+
             if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif'])) {
-                echo "<img src='./listarPreembarque/" . $dado['caminho'] . "' alt='Imagem' class='w-full rounded mb-2'>";
+                if ($caminhoSeguro !== '') {
+                    echo "<img src='" . htmlspecialchars($caminhoSeguro, ENT_QUOTES, 'UTF-8') . "' alt='Imagem' class='w-full rounded mb-2'>";
+                }
             } elseif (in_array($ext, ['mp4', 'webm'])) {
-                echo "<video src='./listarPreembarque/" . $dado['caminho'] . "' controls class='w-full rounded mb-2'></video>";
+                if ($caminhoSeguro !== '') {
+                    echo "<video src='" . htmlspecialchars($caminhoSeguro, ENT_QUOTES, 'UTF-8') . "' controls class='w-full rounded mb-2'></video>";
+                }
             }
         }
         if (!empty($dado['resposta'])) {

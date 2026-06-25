@@ -1,75 +1,174 @@
-function enviarImagem(inputElement) {
+function canvasParaBlob(canvas, quality) {
+    return new Promise((resolve, reject) => {
+        canvas.toBlob((blob) => {
+            if (!blob) {
+                reject(new Error('Não foi possível gerar a imagem redimensionada.'));
+                return;
+            }
 
-    const divSalvando = document.getElementById('loadingScreen');
-    divSalvando.classList.remove('hidden')
-    const id_item = inputElement.getAttribute('id');
-    const file = inputElement.files[0];
+            resolve(blob);
+        }, 'image/jpeg', quality);
+    });
+}
 
-    if (!file) {
-        console.log('Nenhuma imagem selecionada.');
+function carregarImagem(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+
+        reader.onload = (event) => {
+            const img = new Image();
+            img.onload = () => resolve(img);
+            img.onerror = () => reject(new Error('Não foi possível carregar a imagem selecionada.'));
+            img.src = event.target.result;
+        };
+
+        reader.onerror = () => reject(new Error('Não foi possível ler o arquivo selecionado.'));
+        reader.readAsDataURL(file);
+    });
+}
+
+function redimensionarImagem(img, maxWidth, quality) {
+    const canvas = document.createElement('canvas');
+    const aspectRatio = img.width / img.height;
+
+    canvas.width = maxWidth;
+    canvas.height = maxWidth / aspectRatio;
+
+    const context = canvas.getContext('2d');
+    context.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+    return canvasParaBlob(canvas, quality);
+}
+
+async function lerRespostaUpload(response) {
+    const rawText = await response.text();
+
+    try {
+        const data = rawText ? JSON.parse(rawText) : {};
+        return { data, rawText };
+    } catch (error) {
+        return {
+            data: {
+                success: false,
+                message: 'Resposta inválida do servidor.',
+                error: rawText
+            },
+            rawText
+        };
+    }
+}
+
+function adicionarImagemNaTela(inputElement, data) {
+    const uploadSlot = inputElement.closest('.inputThumbnail');
+    const container = uploadSlot?.closest('.inputContainer');
+
+    if (!container || !uploadSlot || !data.id_imagem || !data.thumbnail) {
+        console.warn('Não foi possível atualizar a imagem na tela:', { data, inputElement });
         return;
     }
 
-    const maxWidth1 = 300; // Primeira largura máxima desejada
-    const maxHeight1 = 300; // Primeira altura máxima desejada
-    const quality1 = 0.2; // Primeira qualidade de imagem
+    const idImagem = data.id_imagem;
+    const cardExistente = document.getElementById(`${idImagem}thumb`);
 
-    const maxWidth2 = 600; // Segunda largura máxima desejada
-    const maxHeight2 = 600; // Segunda altura máxima desejada
-    const quality2 = 0.8; // Segunda qualidade de imagem
+    if (cardExistente) {
+        cardExistente.remove();
+    }
 
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        const img = new Image();
-        img.src = e.target.result;
-        img.onload = function() {
-            const canvas1 = document.createElement('canvas');
-            const canvas2 = document.createElement('canvas');
+    const card = document.createElement('div');
+    card.id = `${idImagem}thumb`;
+    card.className = 'thumbnailImageLoaded';
 
-            // Redimensionamento da primeira imagem
-            const aspectRatio1 = img.width / img.height;
-            canvas1.width = maxWidth1;
-            canvas1.height = maxWidth1 / aspectRatio1;
-            const ctx1 = canvas1.getContext('2d');
-            ctx1.drawImage(img, 0, 0, canvas1.width, canvas1.height);
+    const apagarButton = document.createElement('button');
+    apagarButton.type = 'button';
+    apagarButton.className = 'apagarImagem';
+    apagarButton.title = 'Apagar imagem';
+    apagarButton.addEventListener('click', () => apagarImagem(idImagem));
 
-            // Redimensionamento da segunda imagem
-            const aspectRatio2 = img.width / img.height;
-            canvas2.width = maxWidth2;
-            canvas2.height = maxWidth2 / aspectRatio2;
-            const ctx2 = canvas2.getContext('2d');
-            ctx2.drawImage(img, 0, 0, canvas2.width, canvas2.height);
+    const apagarIcone = document.createElement('img');
+    apagarIcone.src = '../../assets/erase1.svg';
+    apagarIcone.alt = 'Apagar';
+    apagarButton.appendChild(apagarIcone);
 
-            canvas1.toBlob(function(blob1) {
-                canvas2.toBlob(function(blob2) {
-                    const formData = new FormData();
-                    formData.append('id_item', id_item);
-                    formData.append('imagem1', blob1, 'redimensionada1.jpg');
-                    formData.append('imagem2', blob2, 'redimensionada2.jpg');
+    const imagemWrapper = document.createElement('div');
+    imagemWrapper.className = 'buttonUploadImg';
 
-                    fetch('upload.php', {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(response => response.text())
-                    .then(data => {
-                    
-                        console.log(data);
-                        alert(data);
-                        setTimeout(() => {
-                            reload();
-                        }, 500);
-             
-                
-                    })
-                    .catch(error => {
-                        alert('Errro ao enviar imagem, entre em contato com o administrador  ' + error);
-                        
-                    });
-                }, 'image/jpeg', quality2);
-            }, 'image/jpeg', quality1);
-        };
+    const imagem = document.createElement('img');
+    imagem.src = data.thumbnail;
+    imagem.alt = 'Imagem da inspeção';
+    imagemWrapper.appendChild(imagem);
+
+    const inputThumb = document.createElement('input');
+    inputThumb.type = 'hidden';
+    inputThumb.id = `${idImagem}inputThumb`;
+    inputThumb.value = data.thumbnail;
+
+    const inputHigh = document.createElement('input');
+    inputHigh.type = 'hidden';
+    inputHigh.id = `${idImagem}input`;
+    inputHigh.value = data.high_definition || '';
+
+    card.appendChild(apagarButton);
+    card.appendChild(imagemWrapper);
+    card.appendChild(inputThumb);
+    card.appendChild(inputHigh);
+
+    container.insertBefore(card, uploadSlot);
+}
+
+async function enviarImagem(inputElement) {
+    const divSalvando = document.getElementById('loadingScreen');
+    divSalvando.classList.remove('hidden');
+    const finalizarLoading = () => {
+        divSalvando.classList.add('hidden');
+        inputElement.value = '';
     };
 
-    reader.readAsDataURL(file);
+    try {
+        const id_item = inputElement.getAttribute('id');
+        const file = inputElement.files[0];
+
+        if (!file) {
+            console.log('Nenhuma imagem selecionada.');
+            return;
+        }
+
+        const img = await carregarImagem(file);
+        const blobThumb = await redimensionarImagem(img, 300, 0.2);
+        const blobHigh = await redimensionarImagem(img, 600, 0.8);
+
+        const formData = new FormData();
+        formData.append('id_item', id_item);
+        formData.append('imagem1', blobThumb, 'redimensionada_thumb.jpg');
+        formData.append('imagem2', blobHigh, 'redimensionada_hd.jpg');
+
+        const response = await fetch('upload.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        const { data, rawText } = await lerRespostaUpload(response);
+
+        if (!response.ok || !data.success) {
+            console.error('Erro ao enviar imagem da inspeção:', {
+                status: response.status,
+                statusText: response.statusText,
+                resposta: data,
+                corpoOriginal: rawText
+            });
+
+            finalizarLoading();
+            await appAlert(data.message || 'Erro ao enviar imagem. Verifique o console do sistema.', { title: 'Upload da inspeção' });
+            return;
+        }
+
+        console.log('Imagem da inspeção salva:', data);
+        finalizarLoading();
+        adicionarImagemNaTela(inputElement, data);
+    } catch (error) {
+        console.error('Erro inesperado ao enviar imagem da inspeção:', error);
+        finalizarLoading();
+        await appAlert('Erro ao enviar imagem. Verifique o console do sistema.', { title: 'Upload da inspeção' });
+    } finally {
+        finalizarLoading();
+    }
 }

@@ -21,14 +21,14 @@
             })
             .then(response => response.text())
             .then(data => {
-                alert(data);
+                appAlert(data, { title: 'Cadastro de usuário' });
                 form.reset();
                 listar(1,10)
             
                 
             });
         }else{
-            alert('A senha não corresponde! Favor conferir novamente.')
+            appAlert('A senha não corresponde! Favor conferir novamente.', { title: 'Confira a senha' });
         }
         
     });

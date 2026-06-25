@@ -472,11 +472,11 @@ if (isset($_GET['id']) && isset($_GET['nome'])) {
     <script src="../../generalScripts/loader.js"></script>
 
     <script>
-        document.getElementById("btnVoltar").addEventListener("click", function(e) {
+        document.getElementById("btnVoltar").addEventListener("click", async function(e) {
             const alterados = document.querySelectorAll("[data-card].border-orange-500");
 
             if (alterados.length > 0) {
-                const confirmar = confirm("Você tem alterações não salvas. Tem certeza que deseja sair?");
+                const confirmar = await appConfirm("Você tem alterações não salvas. Tem certeza que deseja sair?", { title: 'Sair sem salvar' });
                 if (!confirmar) return;
             }
 
