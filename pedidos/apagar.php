@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apagar Registro</title>
-    <link rel="stylesheet" href="apagar.css?v=1.7.0">
-    <link rel="stylesheet" href="../onLoad/onLoad.css?v=1.7.0">
-    <link rel="stylesheet" href="../index/root.css?v=1.7.0">
-    <script src="../onLoad/onLoad.js?v=1.7.0"></script>
+    <link rel="stylesheet" href="apagar.css?v=1.7.1">
+    <link rel="stylesheet" href="../onLoad/onLoad.css?v=1.7.1">
+    <link rel="stylesheet" href="../index/root.css?v=1.7.1">
+    <script src="../onLoad/onLoad.js?v=1.7.1"></script>
 
        <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />

@@ -9,7 +9,7 @@
         darkMode: 'class'
     }
     </script>
-    <script src="generalScripts/darkmode.js?v=1.7.0"></script>
+    <script src="generalScripts/darkmode.js?v=1.7.1"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
@@ -82,11 +82,11 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="../../onLoad/onLoad.js?v=1.7.0"></script>
-  <script src="../../mobileMenu/js/mobileMenu.js?v=1.7.0"></script>
-  <script src="../../generalScripts/version.js?v=1.7.0"></script>
-  <script src="../../generalScripts/backPage.js?v=1.7.0"></script>
-  <script src="cadastro.js?v=1.7.0"></script>
-  <script src="listar.js?v=1.7.0"></script>
-  <script src="busca.js?v=1.7.0"></script>
+  <script src="../../onLoad/onLoad.js?v=1.7.1"></script>
+  <script src="../../mobileMenu/js/mobileMenu.js?v=1.7.1"></script>
+  <script src="../../generalScripts/version.js?v=1.7.1"></script>
+  <script src="../../generalScripts/backPage.js?v=1.7.1"></script>
+  <script src="cadastro.js?v=1.7.1"></script>
+  <script src="listar.js?v=1.7.1"></script>
+  <script src="busca.js?v=1.7.1"></script>
 </body>

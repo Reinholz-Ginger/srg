@@ -45,9 +45,9 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="onLoad/onLoad.css?v=1.7.0">
-    <link rel="stylesheet" href="index/root.css?v=1.7.0">
-    <link rel="stylesheet" href="index/login.css?v=1.7.0">
+    <link rel="stylesheet" href="onLoad/onLoad.css?v=1.7.1">
+    <link rel="stylesheet" href="index/root.css?v=1.7.1">
+    <link rel="stylesheet" href="index/login.css?v=1.7.1">
     <link rel="shortcut icon" href="assets/favicon.svg" type="image/x-icon">
     <link rel="manifest" href="/manifest.json">
     <title>Login</title>
@@ -82,15 +82,15 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
     </form>
 
     <!-- Scripts -->
-    <script src="onLoad/onLoad.js?v=1.7.0"></script>
-    <script src="generalScripts/version.js?v=1.7.0"></script>
+    <script src="onLoad/onLoad.js?v=1.7.1"></script>
+    <script src="generalScripts/version.js?v=1.7.1"></script>
 
     <!-- Service Worker (agora no lugar certo) -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker
-                    .register('service-worker.js?v=1.7.0') // relativo à pasta /srg/
+                    .register('service-worker.js?v=1.7.1') // relativo à pasta /srg/
                     .then(reg => console.log('Service Worker registrado com sucesso:', reg.scope))
                     .catch(err => console.error('Erro ao registrar o Service Worker:', err));
             });

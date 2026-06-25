@@ -41,10 +41,10 @@ if (isset($_GET['id'])) {
   <script>
     document.documentElement.classList.add('dark');
   </script>
-  <script src="../../onLoad/onLoad.js?v=1.7.0"></script>
-  <script src="../../generalScripts/version.js?v=1.7.0"></script>
-  <script src="../../generalScripts/backPage.js?v=1.7.0"></script>
-  <script src="../../mobileMenu/js/mobileMenu.js?v=1.7.0"></script>
+  <script src="../../onLoad/onLoad.js?v=1.7.1"></script>
+  <script src="../../generalScripts/version.js?v=1.7.1"></script>
+  <script src="../../generalScripts/backPage.js?v=1.7.1"></script>
+  <script src="../../mobileMenu/js/mobileMenu.js?v=1.7.1"></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen flex items-center justify-center p-4">

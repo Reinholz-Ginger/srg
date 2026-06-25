@@ -23,10 +23,10 @@ if (!isset($_SESSION['id'])) {
   </script>
 
   <script src="../mobileMenu/js/mo"></script>
-    <script src="../generalScripts/toastify.js?v=1.7.0"></script>
+    <script src="../generalScripts/toastify.js?v=1.7.1"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="../generalScripts/darkmode.js?v=1.7.0"></script>
-  <script src="../onLoad/onLoad.js?v=1.7.0"></script>
+  <script src="../generalScripts/darkmode.js?v=1.7.1"></script>
+  <script src="../onLoad/onLoad.js?v=1.7.1"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </head>
@@ -132,7 +132,7 @@ if (!isset($_SESSION['id'])) {
 </html>
 
 
-  <script src="../generalScripts/backPage.js?v=1.7.0"></script>
-  <script src="../generalScripts/version.js?v=1.7.0"></script>
-  <script src="../pedidos/busca.js?v=1.7.0"></script>
-  <script src="listar.js?v=1.7.0"></script>
+  <script src="../generalScripts/backPage.js?v=1.7.1"></script>
+  <script src="../generalScripts/version.js?v=1.7.1"></script>
+  <script src="../pedidos/busca.js?v=1.7.1"></script>
+  <script src="listar.js?v=1.7.1"></script>

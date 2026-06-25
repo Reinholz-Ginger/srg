@@ -63,7 +63,7 @@ if (isset($_GET['id']) && isset($_GET['nome'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../assets/favicon.svg" type="image/x-icon">
     <meta name="robots" content="nofollow,noindex">
-    <script src="../../generalScripts/darkmode.js?v=1.7.0"></script>
+    <script src="../../generalScripts/darkmode.js?v=1.7.1"></script>
     <title>Pre Embarque</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -77,13 +77,13 @@ if (isset($_GET['id']) && isset($_GET['nome'])) {
     </script>
 
     <link rel="shortcut icon" href="../../assets/favicon.svg" type="image/x-icon">
-    <link rel="stylesheet" href="../../onLoad/onLoad.css?v=1.7.0">
+    <link rel="stylesheet" href="../../onLoad/onLoad.css?v=1.7.1">
 
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-    <script src="../../generalScripts/darkmode.js?v=1.7.0"></script>
+    <script src="../../generalScripts/darkmode.js?v=1.7.1"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </head>
@@ -152,12 +152,12 @@ if (isset($_GET['id']) && isset($_GET['nome'])) {
         <p id="data-footer"></p>
     </footer>
 
-    <script src="../../onLoad/onLoad.js?v=1.7.0"></script>
+    <script src="../../onLoad/onLoad.js?v=1.7.1"></script>
 
 
-    <script src="../../generalScripts/version.js?v=1.7.0"></script>
-    <script src="../../generalScripts/backPage.js?v=1.7.0"></script>
-    <script src="../js/preEmbarque.js?v=1.7.0"></script>
+    <script src="../../generalScripts/version.js?v=1.7.1"></script>
+    <script src="../../generalScripts/backPage.js?v=1.7.1"></script>
+    <script src="../js/preEmbarque.js?v=1.7.1"></script>
 
 
 
@@ -469,7 +469,7 @@ if (isset($_GET['id']) && isset($_GET['nome'])) {
      
     </script>
 
-    <script src="../../generalScripts/loader.js?v=1.7.0"></script>
+    <script src="../../generalScripts/loader.js?v=1.7.1"></script>
 
     <script>
         document.getElementById("btnVoltar").addEventListener("click", async function(e) {
@@ -485,7 +485,7 @@ if (isset($_GET['id']) && isset($_GET['nome'])) {
         });
     </script>
 
-    <script src="../../generalScripts/toastify.js?v=1.7.0"></script>
+    <script src="../../generalScripts/toastify.js?v=1.7.1"></script>
 
 
 </body>

@@ -26,8 +26,8 @@
 
 
   <!-- Script dark mode --> 
-    <script src="generalScripts/darkmode.js?v=1.7.0"></script>
-  <script src="onLoad/onLoad.js?v=1.7.0"></script>
+    <script src="generalScripts/darkmode.js?v=1.7.1"></script>
+  <script src="onLoad/onLoad.js?v=1.7.1"></script>
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 font-sans" onload="onLoad()">
@@ -121,9 +121,9 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="generalScripts/version.js?v=1.7.0"></script>
-  <script src="generalScripts/timeFormat.js?v=1.7.0"></script>
-  <script src="../main.js?v=1.7.0"></script>
+  <script src="generalScripts/version.js?v=1.7.1"></script>
+  <script src="generalScripts/timeFormat.js?v=1.7.1"></script>
+  <script src="../main.js?v=1.7.1"></script>
 
 </body>
 </html>

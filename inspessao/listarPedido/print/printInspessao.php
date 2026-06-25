@@ -38,10 +38,10 @@ if (isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="nofollow,noindex">
-    <link rel="stylesheet" href="../../../index/root.css?v=1.7.0">
-    <link rel="stylesheet" href="../../../onLoad/onLoad.css?v=1.7.0">
-    <link rel="stylesheet" href="../../../mobileMenu/css/mobileMenu.css?v=1.7.0">
-    <link rel="stylesheet" href="printInspessao.css?v=1.7.0">
+    <link rel="stylesheet" href="../../../index/root.css?v=1.7.1">
+    <link rel="stylesheet" href="../../../onLoad/onLoad.css?v=1.7.1">
+    <link rel="stylesheet" href="../../../mobileMenu/css/mobileMenu.css?v=1.7.1">
+    <link rel="stylesheet" href="printInspessao.css?v=1.7.1">
 
     <link rel="shortcut icon" href="../../../assets/favicon.svg" type="image/x-icon">
     <title>Inspeção</title>
@@ -49,7 +49,7 @@ if (isset($_GET['id'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </head>
-<script src="../../../onLoad/onLoad.js?v=1.7.0"></script>
+<script src="../../../onLoad/onLoad.js?v=1.7.1"></script>
 
 
 
@@ -199,11 +199,11 @@ if (isset($_GET['id'])) {
 
 
 
-<script src="../../../generalScripts/version.js?v=1.7.0"></script>
+<script src="../../../generalScripts/version.js?v=1.7.1"></script>
 
-<script src="../../generalScripts/backPage.js?v=1.7.0"></script>
-<script src="../../../generalScripts/print.js?v=1.7.0"></script>
-<script src="../../../generalScripts/backPage.js?v=1.7.0"></script>
+<script src="../../generalScripts/backPage.js?v=1.7.1"></script>
+<script src="../../../generalScripts/print.js?v=1.7.1"></script>
+<script src="../../../generalScripts/backPage.js?v=1.7.1"></script>
 
 
 
